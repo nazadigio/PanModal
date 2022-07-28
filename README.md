@@ -7,6 +7,7 @@ This fork contains some improvements of the original library, including:
 - It can detect if the view was either closed by the user or by the `dismiss(_)` function. Use the functions `panModalWillDismiss(fromGestureRecognizer: Bool)` and `panModalDidDismiss(fromGestureRecognizer: Bool)`.
 - It can draw over the current context. Use the flag `shouldUseAppearanceTransitions`.
 - Applied swiftlint and removed some warnings.
+- Added `shouldAdjustToBottomSafeArea` flag.
 ```
 
 
