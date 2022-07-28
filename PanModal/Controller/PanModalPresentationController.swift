@@ -470,10 +470,12 @@ private extension PanModalPresentationController {
          Set the appropriate contentInset as the configuration within this class
          offsets it
          */
-        if #available(iOS 11.0, *) {
-            scrollView.contentInset.bottom = presentingViewController.view.safeAreaInsets.bottom
-        } else {
-            scrollView.contentInset.bottom = presentingViewController.bottomLayoutGuide.length
+        if presentable?.shouldAdjustToBottomSafeArea ?? true {
+            if #available(iOS 11.0, *) {
+                scrollView.contentInset.bottom = presentingViewController.view.safeAreaInsets.bottom
+            } else {
+                scrollView.contentInset.bottom = presentingViewController.bottomLayoutGuide.length
+            }
         }
 
         /**

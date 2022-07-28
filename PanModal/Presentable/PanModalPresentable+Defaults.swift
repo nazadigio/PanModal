@@ -105,6 +105,10 @@ public extension PanModalPresentable where Self: UIViewController {
       false
     }
 
+    var shouldAdjustToBottomSafeArea: Bool {
+        true
+    }
+    
     func shouldRespond(to panModalGestureRecognizer: UIPanGestureRecognizer) -> Bool {
         true
     }

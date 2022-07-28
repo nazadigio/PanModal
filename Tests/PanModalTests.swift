@@ -61,6 +61,7 @@ class PanModalTests: XCTestCase {
         XCTAssertEqual(vc.showDragIndicator, false)
         XCTAssertEqual(vc.shouldDismissWhenLongForm, false)
         XCTAssertEqual(vc.shouldRoundTopCorners, false)
+        XCTAssertEqual(vc.shouldAdjustToBottomSafeArea, true)
         XCTAssertEqual(vc.cornerRadius, 8.0)
         XCTAssertEqual(vc.transitionDuration, PanModalAnimator.Constants.defaultTransitionDuration)
         XCTAssertEqual(vc.transitionAnimationOptions, [.curveEaseInOut, .allowUserInteraction, .beginFromCurrentState])

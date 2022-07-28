@@ -188,6 +188,12 @@ public protocol PanModalPresentable: AnyObject {
     var shouldUseAppearanceTransitions: Bool { get }
 
     /**
+     A flag to determine if should take care of bottom safeArea.
+     Default value is true.
+     */
+    var shouldAdjustToBottomSafeArea: Bool { get }
+    
+    /**
      Asks the delegate if the pan modal should respond to the pan modal gesture recognizer.
      
      Return false to disable movement on the pan modal but maintain gestures on the presented view.
