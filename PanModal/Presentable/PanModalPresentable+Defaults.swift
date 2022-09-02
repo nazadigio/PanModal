@@ -109,6 +109,10 @@ public extension PanModalPresentable where Self: UIViewController {
         true
     }
     
+    func shouldBeginPanGesture(_ panModalGestureRecognizer: UIPanGestureRecognizer) -> Bool {
+            return true
+    }
+    
     func shouldRespond(to panModalGestureRecognizer: UIPanGestureRecognizer) -> Bool {
         true
     }
