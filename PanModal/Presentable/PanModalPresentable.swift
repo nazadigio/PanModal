@@ -111,6 +111,13 @@ public protocol PanModalPresentable: AnyObject {
     var scrollIndicatorInsets: UIEdgeInsets { get }
 
     /**
+     A flag to determine in PanModal can change showScrollIndicator state
+
+     Default value is true
+     */
+    var allowModifyShowScrollIndicator: Bool { get }
+    
+    /**
      A flag to determine if scrolling should be limited to the longFormHeight.
      Return false to cap scrolling at .max height.
 
