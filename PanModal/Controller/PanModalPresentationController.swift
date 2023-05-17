@@ -211,24 +211,39 @@ open class PanModalPresentationController: UIPresentationController {
         }
         backgroundView.removeFromSuperview()
     }
-
+    
     override public func dismissalTransitionWillBegin() {
         presentable?.panModalWillDismiss(fromGestureRecognizer: dismissFromGestureRecognizer)
-
+        
         guard let coordinator = presentedViewController.transitionCoordinator else {
             backgroundView.dimState = .off
             return
         }
-
+        
         /**
          Drag indicator is drawn outside of view bounds
          so hiding it on view dismiss means avoiding visual bugs
          */
-        coordinator.animate(alongsideTransition: { [weak self] _ in
-            self?.dragIndicatorView.alpha = 0.0
-            self?.backgroundView.dimState = .off
-            self?.presentingViewController.setNeedsStatusBarAppearanceUpdate()
-        })
+        if coordinator.isAnimated {
+            coordinator.animate(alongsideTransition: { [weak self] _ in
+                self?.dragIndicatorView.alpha = 0.0
+                self?.backgroundView.dimState = .off
+                self?.presentingViewController.setNeedsStatusBarAppearanceUpdate()
+            })
+        } else {
+            dragIndicatorView.alpha = 0.0
+            backgroundView.dimState = .off
+            presentingViewController.setNeedsStatusBarAppearanceUpdate()
+            
+            guard
+                let toVC = coordinator.viewController(forKey: .to),
+                let fromVC = coordinator.viewController(forKey: .from)
+            else { return }
+            
+            toVC.beginAppearanceTransition(true, animated: false)
+            fromVC.view.removeFromSuperview()
+            toVC.endAppearanceTransition()
+        }
     }
 
     override public func dismissalTransitionDidEnd(_ completed: Bool) {
